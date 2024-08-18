@@ -6,7 +6,7 @@ A Node.js backend server for menu management with MongoDB Atlas for database.
 
 ## Live Demo
 
-https://arjun-menubackend.onrender.com/
+https://arjun-redirect-to.onrender.com/redirect/menubackend
 
 ## Simple API Design Example
 
