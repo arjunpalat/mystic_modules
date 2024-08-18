@@ -28,6 +28,12 @@ app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
 
+app.get("/", (request, response) => {
+  response.send(
+    "Welcome to Menu Backend API! Please refer to the API Documentation in GitHub for more information."
+  );
+});
+
 app.use("/api/categories", categoryRouter);
 app.use("/api/subcategories", subcategoryRouter);
 app.use("/api/items", itemsRouter);
