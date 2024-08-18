@@ -1,45 +1,49 @@
 const Category = require("../models/category");
 const Subcategory = require("../models/subcategory");
 const Items = require("../models/items");
-const mongoose = require("mongoose");
 
+/* Sample data for Menu to be loaded into the database */
 const categories = [
   {
-    name: "Italian Main Courses",
-    description: "Classic and hearty Italian dishes served as the main course.",
-    image: "italian_main_courses.jpg",
-    taxApplicability: true,
-    tax: 6,
-    taxType: "percentage",
-  },
-  {
-    name: "Italian Appetizers",
-    description: "Small, flavorful bites to start off an Italian meal.",
-    image: "italian_appetizers.jpg",
-    taxApplicability: true,
-    tax: 8,
-    taxType: "percentage",
-  },
-  {
-    name: "Italian Desserts",
-    description: "Delicious sweet dishes to complete an Italian meal.",
-    image: "italian_desserts.jpg",
-    taxApplicability: true,
-    tax: 10,
-    taxType: "percentage",
-  },
-  {
-    name: "Italian Beverages",
-    description: "Traditional Italian drinks, both hot and cold.",
-    image: "italian_beverages.jpg",
+    name: "Indian Main Courses",
+    description:
+      "Hearty and flavorful dishes that are the centerpiece of an Indian meal.",
+    image: "indian_main_courses.jpg",
     taxApplicability: true,
     tax: 5,
     taxType: "percentage",
   },
   {
-    name: "Italian Breads",
-    description: "Various types of bread served with Italian dishes.",
-    image: "italian_breads.jpg",
+    name: "Indian Snacks",
+    description:
+      "Tasty small bites and appetizers enjoyed between meals or as starters.",
+    image: "indian_snacks.jpg",
+    taxApplicability: true,
+    tax: 8,
+    taxType: "percentage",
+  },
+  {
+    name: "Indian Desserts",
+    description: "Delicious sweet dishes traditionally enjoyed after meals.",
+    image: "indian_desserts.jpg",
+    taxApplicability: true,
+    tax: 10,
+    taxType: "percentage",
+  },
+  {
+    name: "Indian Beverages",
+    description:
+      "Traditional Indian drinks, both hot and cold, often served alongside meals.",
+    image: "indian_beverages.jpg",
+    taxApplicability: true,
+    tax: 5,
+    taxType: "percentage",
+  },
+  {
+    name: "Indian Breads",
+    description:
+      "Various types of Indian breads that accompany curries and main dishes.",
+    image: "indian_breads.jpg",
     taxApplicability: false,
     tax: 0,
     taxType: "none",
@@ -48,50 +52,68 @@ const categories = [
 
 const subcategories = [
   {
-    name: "Pasta Dishes",
-    description: "A variety of pasta dishes, a staple of Italian cuisine.",
-    image: "pasta_dishes.jpg",
-    taxApplicability: true,
-    tax: 6,
-    local_cat_id: 1,
-  },
-  {
-    name: "Pizza Varieties",
+    name: "Vegetarian Curries",
     description:
-      "Delicious pizza with a variety of toppings, baked to perfection.",
-    image: "pizza_varieties.jpg",
+      "Flavorful vegetarian curries made with fresh vegetables, lentils, and paneer.",
+    image: "vegetarian_curries.jpg",
     taxApplicability: true,
-    tax: 6,
+    tax: 5,
     local_cat_id: 1,
   },
   {
-    name: "Antipasti",
-    description: "Traditional Italian appetizers to start your meal.",
-    image: "antipasti.jpg",
+    name: "Non-Vegetarian Curries",
+    description: "Rich and hearty curries made with chicken, mutton, or fish.",
+    image: "non_vegetarian_curries.jpg",
+    taxApplicability: true,
+    tax: 5,
+    local_cat_id: 1,
+  },
+  {
+    name: "Street Foods",
+    description: "Popular Indian street snacks enjoyed by people of all ages.",
+    image: "street_foods.jpg",
     taxApplicability: true,
     tax: 8,
     local_cat_id: 2,
   },
   {
-    name: "Gelato & Ice Creams",
-    description: "Refreshing and creamy Italian frozen desserts.",
-    image: "gelato_ice_creams.jpg",
+    name: "Sweets & Mithai",
+    description: "Traditional Indian sweets and confections.",
+    image: "sweets_mithai.jpg",
     taxApplicability: true,
     tax: 10,
     local_cat_id: 3,
   },
   {
-    name: "Coffee & Espresso",
-    description: "Hot Italian beverages, including coffee and espresso.",
-    image: "coffee_espresso.jpg",
+    name: "Hot Drinks",
+    description: "Hot beverages including traditional Indian teas and coffees.",
+    image: "hot_drinks.jpg",
     taxApplicability: true,
     tax: 5,
     local_cat_id: 4,
   },
   {
-    name: "Artisan Breads",
-    description: "Handmade Italian breads, perfect with any meal.",
-    image: "artisan_breads.jpg",
+    name: "Cold Drinks",
+    description:
+      "Refreshing cold drinks including lassis, milkshakes, and soft drinks.",
+    image: "cold_drinks.jpg",
+    taxApplicability: true,
+    tax: 5,
+    local_cat_id: 4,
+  },
+  {
+    name: "Flatbreads",
+    description: "A variety of Indian flatbreads that complement main dishes.",
+    image: "flatbreads.jpg",
+    taxApplicability: false,
+    tax: 0,
+    local_cat_id: 5,
+  },
+  {
+    name: "Stuffed Breads",
+    description:
+      "Indian breads stuffed with a variety of fillings like potatoes, paneer, and more.",
+    image: "stuffed_breads.jpg",
     taxApplicability: false,
     tax: 0,
     local_cat_id: 5,
@@ -100,56 +122,102 @@ const subcategories = [
 
 const items = [
   {
-    name: "Spaghetti Carbonara",
-    image: "https://example.com/images/spaghetti_carbonara.jpg",
+    name: "Paneer Butter Masala",
+    image: "https://example.com/images/paneer_butter_masala.jpg",
     description:
-      "Classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+      "Rich and creamy curry made with paneer in a buttery tomato sauce.",
     taxApplicability: true,
-    tax: 10,
-    baseAmount: 200,
+    tax: 5,
+    baseAmount: 250,
+    discount: 20,
+    local_cat_id: 1,
+    local_subcat_id: 1,
+  },
+  {
+    name: "Aloo Gobi",
+    image: "https://example.com/images/aloo_gobi.jpg",
+    description: "A spicy and dry curry made with potatoes and cauliflower.",
+    taxApplicability: true,
+    tax: 5,
+    baseAmount: 180,
     discount: 15,
     local_cat_id: 1,
     local_subcat_id: 1,
   },
   {
-    name: "Margherita Pizza",
-    image: "https://example.com/images/margherita_pizza.jpg",
-    description:
-      "Traditional pizza with fresh tomatoes, mozzarella cheese, and basil.",
+    name: "Chicken Tikka Masala",
+    image: "https://example.com/images/chicken_tikka_masala.jpg",
+    description: "Chunks of grilled chicken in a spiced, creamy tomato curry.",
     taxApplicability: true,
-    tax: 10,
-    baseAmount: 250,
-    discount: 20,
+    tax: 12,
+    baseAmount: 300,
+    discount: 25,
     local_cat_id: 1,
     local_subcat_id: 2,
   },
   {
-    name: "Bruschetta",
-    image: "https://example.com/images/bruschetta.jpg",
-    description: "Grilled bread topped with fresh tomatoes, garlic, and basil.",
+    name: "Mutton Rogan Josh",
+    image: "https://example.com/images/mutton_rogan_josh.jpg",
+    description: "Aromatic mutton curry cooked with spices and yogurt.",
+    taxApplicability: true,
+    tax: 12,
+    baseAmount: 350,
+    discount: 30,
+    local_cat_id: 1,
+    local_subcat_id: 2,
+  },
+  {
+    name: "Pani Puri",
+    image: "https://example.com/images/pani_puri.jpg",
+    description:
+      "Crispy hollow puris filled with spicy water and tangy tamarind chutney.",
     taxApplicability: true,
     tax: 8,
-    baseAmount: 120,
+    baseAmount: 100,
     discount: 10,
     local_cat_id: 2,
     local_subcat_id: 3,
   },
   {
-    name: "Tiramisu",
-    image: "https://example.com/images/tiramisu.jpg",
+    name: "Bhel Puri",
+    image: "https://example.com/images/bhel_puri.jpg",
     description:
-      "Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cheese.",
+      "A tangy and crunchy mix of puffed rice, vegetables, and tamarind sauce.",
     taxApplicability: true,
-    tax: 12,
-    baseAmount: 180,
-    discount: 10,
+    tax: 8,
+    baseAmount: 120,
+    discount: 15,
+    local_cat_id: 2,
+    local_subcat_id: 3,
+  },
+  {
+    name: "Gulab Jamun",
+    image: "https://example.com/images/gulab_jamun.jpg",
+    description:
+      "Soft and syrupy dumplings made from khoya, deep-fried and soaked in sugar syrup.",
+    taxApplicability: true,
+    tax: 10,
+    baseAmount: 80,
+    discount: 5,
     local_cat_id: 3,
     local_subcat_id: 4,
   },
   {
-    name: "Espresso",
-    image: "https://example.com/images/espresso.jpg",
-    description: "Strong and rich Italian coffee.",
+    name: "Rasgulla",
+    image: "https://example.com/images/rasgulla.jpg",
+    description: "Soft and spongy cheese balls soaked in sugar syrup.",
+    taxApplicability: true,
+    tax: 10,
+    baseAmount: 90,
+    discount: 5,
+    local_cat_id: 3,
+    local_subcat_id: 4,
+  },
+  {
+    name: "Masala Chai",
+    image: "https://example.com/images/masala_chai.jpg",
+    description:
+      "Traditional Indian tea brewed with spices like ginger, cardamom, and cloves.",
     taxApplicability: true,
     tax: 5,
     baseAmount: 50,
@@ -158,19 +226,90 @@ const items = [
     local_subcat_id: 5,
   },
   {
-    name: "Focaccia",
-    image: "https://example.com/images/focaccia.jpg",
+    name: "Filter Coffee",
+    image: "https://example.com/images/filter_coffee.jpg",
     description:
-      "Soft and flavorful Italian flatbread, often topped with herbs and olive oil.",
-    taxApplicability: false,
-    tax: 0,
+      "Strong and flavorful South Indian coffee made with fresh ground beans.",
+    taxApplicability: true,
+    tax: 5,
+    baseAmount: 60,
+    discount: 5,
+    local_cat_id: 4,
+    local_subcat_id: 5,
+  },
+  {
+    name: "Mango Lassi",
+    image: "https://example.com/images/mango_lassi.jpg",
+    description: "A refreshing yogurt-based drink blended with mango pulp.",
+    taxApplicability: true,
+    tax: 5,
     baseAmount: 100,
     discount: 10,
-    local_cat_id: 5,
+    local_cat_id: 4,
     local_subcat_id: 6,
+  },
+  {
+    name: "Rose Milk",
+    image: "https://example.com/images/rose_milk.jpg",
+    description: "Chilled milk flavored with rose syrup.",
+    taxApplicability: true,
+    tax: 5,
+    baseAmount: 80,
+    discount: 10,
+    local_cat_id: 4,
+    local_subcat_id: 6,
+  },
+  {
+    name: "Naan",
+    image: "https://example.com/images/naan.jpg",
+    description:
+      "Soft and chewy flatbread made from wheat flour, often served with curries.",
+    taxApplicability: false,
+    tax: 0,
+    baseAmount: 40,
+    discount: 5,
+    local_cat_id: 5,
+    local_subcat_id: 7,
+  },
+  {
+    name: "Tandoori Roti",
+    image: "https://example.com/images/tandoori_roti.jpg",
+    description:
+      "Whole wheat flatbread cooked in a tandoor, served hot with butter.",
+    taxApplicability: false,
+    tax: 0,
+    baseAmount: 30,
+    discount: 5,
+    local_cat_id: 5,
+    local_subcat_id: 7,
+  },
+  {
+    name: "Aloo Paratha",
+    image: "https://example.com/images/aloo_paratha.jpg",
+    description:
+      "Whole wheat bread stuffed with a spiced potato filling, served with yogurt or pickle.",
+    taxApplicability: false,
+    tax: 0,
+    baseAmount: 60,
+    discount: 10,
+    local_cat_id: 5,
+    local_subcat_id: 8,
+  },
+  {
+    name: "Paneer Kulcha",
+    image: "https://example.com/images/paneer_kulcha.jpg",
+    description:
+      "Fluffy bread stuffed with spiced paneer filling, baked in a tandoor.",
+    taxApplicability: false,
+    tax: 0,
+    baseAmount: 70,
+    discount: 10,
+    local_cat_id: 5,
+    local_subcat_id: 8,
   },
 ];
 
+/* Function to save data via Model to the database */
 async function saveToDB(Model, data) {
   try {
     const object = new Model(data);
@@ -180,6 +319,7 @@ async function saveToDB(Model, data) {
   }
 }
 
+/* Function to save the complete sample data into the database */
 const loadDB = async () => {
   const categoryMap = new Map();
   const subcategoryMap = new Map();
@@ -218,6 +358,7 @@ const loadDB = async () => {
   }
 };
 
+/* Function to empty the database */
 const emptyDB = async () => {
   try {
     await Promise.all([
@@ -233,4 +374,9 @@ const emptyDB = async () => {
 module.exports = {
   loadDB,
   emptyDB,
+  countOf: {
+    categories: categories.length,
+    subcategories: subcategories.length,
+    items: items.length,
+  },
 };

@@ -6,6 +6,7 @@ const {
   updateSubcategory,
 } = require("../controllers/subcategory");
 
+/* Routes for subcategories */
 subcategoryRouter.get("/", getOneOrMoreSubcategories);
 subcategoryRouter.post("/", checkAuthorization, createSubcategory);
 subcategoryRouter.patch("/", checkAuthorization, updateSubcategory);

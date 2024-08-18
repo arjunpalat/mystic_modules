@@ -6,6 +6,7 @@ const {
   updateCategory,
 } = require("../controllers/category");
 
+/* Routes for categories */
 categoryRouter.get("/", getOneOrMoreCategories);
 categoryRouter.post("/", checkAuthorization, createCategory);
 categoryRouter.patch("/", checkAuthorization, updateCategory);

@@ -1,5 +1,6 @@
 const Items = require("../models/items");
 
+/* Search for an item by name */
 const searchItem = async (request, response) => {
   const name = decodeURIComponent(request.query.name);
 

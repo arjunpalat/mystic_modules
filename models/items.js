@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+/* Schema for items */
 const itemSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -45,6 +46,7 @@ const itemSchema = new mongoose.Schema({
   },
 });
 
+/* Transform the returned object */
 itemSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();

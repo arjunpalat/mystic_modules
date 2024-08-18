@@ -6,6 +6,7 @@ const {
   updateItem,
 } = require("../controllers/items");
 
+/* Routes for items */
 itemsRouter.get("/", getOneOrMoreItems);
 itemsRouter.post("/", checkAuthorization, createItem);
 itemsRouter.patch("/", checkAuthorization, updateItem);

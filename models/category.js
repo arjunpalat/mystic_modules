@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+/* Schema for categories */
 const categorySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -28,6 +29,7 @@ const categorySchema = new mongoose.Schema({
     },
 });
 
+/* Transform the returned object */
 categorySchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString();

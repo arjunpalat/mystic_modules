@@ -1,3 +1,4 @@
+/* Function to validate tax details for categories */
 const validateTax= (category) => {
   if (category.taxApplicability === undefined) {
     return "Tax applicability is required";
@@ -11,7 +12,14 @@ const validateTax= (category) => {
   return null;
 };
 
+const validateAmount = (item) => {
+  if (item.baseAmount < item.discount){
+    return "Discount cannot be greater than base amount";
+  }
+  return null;
+}
 
 module.exports = {
   validateTax,
+  validateAmount,
 };

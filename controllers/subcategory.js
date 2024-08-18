@@ -1,6 +1,7 @@
 const Subcategory = require("../models/subcategory");
 const Category = require("../models/category");
 
+/* Get one or more subcategories */
 const getOneOrMoreSubcategories = async (request, response) => {
   const { categoryId, name, id } = request.query;
 
@@ -32,6 +33,7 @@ const getOneOrMoreSubcategories = async (request, response) => {
   response.json(subcategories);
 };
 
+/* Create a new subcategory */
 const createSubcategory = async (request, response) => {
   const body = request.body;
 
@@ -57,6 +59,7 @@ const createSubcategory = async (request, response) => {
   response.status(201).json(savedSubcategory);
 };
 
+/* Update a subcategory */
 const updateSubcategory = async (request, response) => {
   const { id } = request.query;
   const body = request.body;

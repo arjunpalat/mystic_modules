@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+/* Schema for subcategories */
 const subcategorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -29,6 +30,7 @@ const subcategorySchema = new mongoose.Schema({
   },
 });
 
+/* Transform the returned object */
 subcategorySchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();

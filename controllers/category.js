@@ -1,6 +1,7 @@
 const Category = require("../models/category");
 const { validateTax } = require("./controllersHelper");
 
+/* Get one or more categories */
 const getOneOrMoreCategories = async (request, response) => {
   const { name, id } = request.query;
   if (name) {
@@ -23,6 +24,7 @@ const getOneOrMoreCategories = async (request, response) => {
   response.json(categories);
 };
 
+/* Create a new category */
 const createCategory = async (request, response) => {
   const body = request.body;
   const error = validateTax(body);
@@ -41,6 +43,7 @@ const createCategory = async (request, response) => {
   response.status(201).json(savedCategory);
 };
 
+/* Update a category */
 const updateCategory = async (request, response) => {
   const { id } = request.query;
   const body = request.body;
