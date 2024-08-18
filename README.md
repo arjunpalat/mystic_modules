@@ -35,7 +35,7 @@ git clone https://github.com/arjunpalat/mystic_modules.git
 ```bash
 npm install
 ```
-3) Refer .env.example to configure your .env file
+3) Refer .env.example to configure your .env file. Provide your MongoDB URIs for Test and Development, SECRET for Authorization and PORT for Node.js server.
 
 4) Start the server
 
@@ -49,3 +49,41 @@ http://localhost:3001/
 
 #### Note
 When locally testing for POST and PATCH endpoints, Bearer {SECRET} is to be provided as Authorization header. Provide any SECRET in .env file.
+
+## API Documentation
+
+### GET
+| Description | Method | Endpoint Example |
+|-------------|--------|------------------|
+| GET All Catetgories | GET | /api/categories |
+| GET Catetgory By Name | GET | /api/categories?name=Main%20Course |
+| GET Catetgory By ID | GET | /api/categories?id=66c0ee9c08d5f0b921d9156d |
+| GET All Subcatetgories | GET | /api/subcategories |
+| GET Subcatetgory By Name | GET | /api/subcategories?name=Ice%20Cream |
+| GET Subcategory By ID | GET | /api/subcategories?id=66c0ee9c08d5f0b921d91577 |
+| GET All Items | GET | /api/items |
+| GET Item By Name | GET | /api/items?name=Biriyani |
+| GET Item By ID | GET | /api/items?id=66c0ee9c08d5f0b921d91583 |
+| GET Items By Category ID | GET | /api/items?category=66c0ee9c08d5f0b921ef76ea |
+| GET Items By Subcategory ID | GET | /api/items?subcategory=66c0ee9c08d5f0b921du81wn |
+| SEARCH Item By Name | GET | /api/search?name=Samosa |
+
+### POST
+| Description | Method | Endpoint Example |
+|-------------|--------|------------------|
+| Create New Category | POST | /api/categories |
+| Create New Subcategory | POST | /api/subcategories |
+| Create New Item | POST | /api/items |
+
+
+### PATCH
+| Description | Method | Endpoint Example |
+|-------------|--------|------------------|
+| Update Category By ID | PATCH | /api/categories?id=66c0ee9c08d5f0b921d9156d |
+| Update Subcategory By ID | PATCH | /api/subcategories?id=66c0ee9c08d5f0b921d91577 |
+| Update Item By ID | PATCH | /api/items?id=66c0ee9c08d5f0b921d91583 |
+
+
+
+
+
